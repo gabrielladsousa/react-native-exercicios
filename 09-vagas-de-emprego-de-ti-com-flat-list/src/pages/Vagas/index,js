@@ -1,0 +1,65 @@
+import { useState } from 'react';
+import { View, FlatList, Text } from 'react-native';
+import Card from '../../components/Card/index';
+import styles from './styles';
+
+function Vagas() {
+  let initial_feed = [
+    {
+      id: '1',
+      titulo: 'Desenvolvedor Backend',
+      salario: 3000.00,
+      descricao: 'Responsável pelo desenvolvimento e manutenção de APIs REST utilizando Node.js e banco de dados SQL.',
+      contato: 'backend@empresa.com'
+    },
+    {
+      id: '2',
+      titulo: 'Engenheiro de Dados',
+      salario: 15000.00,
+      descricao: 'Criação de pipelines de dados, modelagem em Data Warehouse e integração com ferramentas de BI.',
+      contato: 'dados@empresa.com'
+    },
+    {
+      id: '3',
+      titulo: 'Desenvolvedor Frontend',
+      salario: 4500.00,
+      descricao: 'Desenvolvimento de interfaces responsivas utilizando React e integração com APIs.',
+      contato: 'frontend@empresa.com'
+    },
+    {
+      id: '4',
+      titulo: 'Analista de Sistemas',
+      salario: 5200.00,
+      descricao: 'Levantamento de requisitos, documentação técnica e apoio no desenvolvimento de soluções corporativas.',
+      contato: 'analista@empresa.com'
+    },
+    {
+      id: '5',
+      titulo: 'Desenvolvedor Mobile',
+      salario: 6000.00,
+      descricao: 'Criação de aplicativos móveis utilizando React Native com integração a serviços web.',
+      contato: 'mobile@empresa.com'
+    },
+  ]
+
+  const [feed, setFeed] = useState(initial_feed)
+
+  return (
+    <View style={styles.container}>
+    <Text style={styles.titulo}>Vagas</Text>
+      <FlatList
+      data={feed}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={styles.scroll}
+      renderItem={ ({item}) => <Card
+            titulo={item.titulo}
+            salario={item.salario}
+            descricao={item.descricao}
+            contato={item.contato}
+          />}
+      />
+    </View>
+  );
+}
+
+export default Vagas;
